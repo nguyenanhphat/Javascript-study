@@ -1,0 +1,175 @@
+Javascript is hosted language, that mean browsers provide the enviroment for Javascript to run,
+it provive Javascript engine parse and understand all Javascript code and executed 
+
+How code is parsed and complile
+    - Javascript parseing and execution (Javascript engine)
+        + interpretor: load JS then start execute. 
+           - Basic load our script, read it, then translate it to bytecode
+           - But does no line by line in an optimized way
+           - Inside the Javascript engine
+                + Heap(long term memory): memory allocation, store data in your system memory and manages access it
+                + Stack(short term memory): excution of our code, manage our program flow
+        + complier: compile your interpreted JS to machine code
+           - Performance
+           - Happens side by side with the interpretor execute your script
+
+    - Event loop(not  in Javascript engine): with asynchronous code
+
+    - Garbage collection:
+        Periodically check the Heap memory for unused object(are object without reference)
+        - Stack: is cleared automatically beacause items, function calls, excetion are popped off when they're done
+        - Heap
+Data type:
+    - Primitive value: stored in stack, copying a variable (assign to different variable) copies the value
+        string
+        number
+        boolean
+        Null: 
+            + is never a default value, often reset or clear variable
+            + typeof null is object
+        Undefined: default value of uninitialized variable
+        Symbol
+    - Reference value:
+        array(not a type): is special type object
+        object
+    NaN(not a type): 
+        + use it in calculation where you work with numbers, NAN is that kind of like an
+        + typeof NAN is number
+    error code
+Operator
+    ++value: return edited value
+    value--: return value of variable before it was changed
+    == : check for value quality
+    === : check value and type
+    Note:
+        + Object and array are kind of special a Javascript
+
+defer: 
+    + Defer tell the browsers that it should downloaded these script right away
+    but that it should not blocking parse html only execute the scipy after every thing has been parsed
+    
+sync:
+    + sync tell the browsers that it should downloaded these script right away
+    but that it should not blocking parse html
+    + The script execute right away once it downloaded not wait for all the Html code to be parse,
+    parse html wait until execute script done
+    + For use: Your script don't interact with the web page , maybe just send some data to some background server
+
+Loop: 4 main Loop
+    - for loop: excute code a certain amount of times
+        ex: for(let i = 0; i < 3, i++){}
+    - for-of-loop: execute for every  element in array
+        ex: for(const el of array){}
+    - for-in-loop: execute for every key in Object
+        ex: for(const key in obj){}
+    - while loop: execute code as long as a condition true
+        ex: while(true){}
+How to create variable: 
+    - var: create variable
+        + only know funtion and global scope
+    - let: create variable
+        + use it in block scope
+    - const: create constant
+        + use it in block scope
+Function: are object
+    - typeof function = "function"
+    Function Expression: you can store function in variable or const
+        ex: const name = function test() {}
+        * automatically hoist the function to the top and initialize,
+        you can call function befor you declare them
+    Function Declaration
+        * hosting working but the constant gets hoisted as undefined
+    Anonymous Funtion
+    Arrow Funtion:
+    Default parameter
+    Rest paramerter: sum(1, 2,...numbers){}
+    Function inside function: Funtion Inside is only available inside of the function
+
+    - Bind: allow us to preconfigure functions but don't directly execute in function
+
+DOM (Document object model) :
+    * Is not stricly tied to browsers. There are other tools that can parse HTML
+
+    - Document: is a part of window 
+    - Window: is topmost object give you access to all core APIS that the browsers
+
+    - Query element
+        Nodes: everything in the DOM is node
+        +   querySelector(), getElementById() => return single element
+        +   querySelectorAll(), getElementByTagName() => return collections of elements(array-like-objects): NodeList
+
+    Attribute and properties: 
+        + Attribute: Often, attribute are mapped to properties
+
+        + Traversing:
+            - Child: direct child node or element
+            - Descendant: direct or inderect child node or element
+            - Parent: direct parent node or element
+            - Ancertor: direct or inderect parent node or element
+        + Add style: 
+            - ClassList
+        + Create + insert element: 2 way
+            - HTML string: 
+                + innnerHTML(re-render): is usefull whenever you want to change everything all the 
+                HTML content of an element
+                + insertAdjacentHTML:   
+            - createElement
+            - prepend, append(not supper on IE)
+            - appendChild
+            - before, after(not support IE, safari)
+            - insertAdjacentHTML
+            - cloneNode
+            - remove (not support IE)
+            - removeChild(all browser): list.parentElment.removeChild()
+Array
+    - Iterable: Not every iterable is Array. Other iterable are NodeList, string, Map, Set
+    - Create Array
+        + Array.from(): convert array like or iterable to real array
+
+    - splice(start, number delete, ...item insert): add, remove, insert
+    - slice
+    - concat
+    - indexOf: work on Primitive value not for reference value . vd: arr = [1, 2, 3, 4, 5]
+    - lastIndexOf: work on Primitive value not for reference value . vd: arr = [1, 2, 3, 4, 5]
+    - find: return the same object as you have array here, doesn't copy it
+        Ex: personData = [{name: "Max" }, {name: "Manual"}]
+        personData.find((person, idx, persons) => person.name === "Manual")
+    - findIndex
+    - forEach
+    - map: Return new element
+    - sort: sort by default([10.99, 5.99, 3.99, 6.59].sort()) convert everything to string 
+        and then simply sort string logic(its not "10" > "3" but "1 < 3") => result = [10.99, 3.99, 5.99, 6.59]
+    - reverse
+    - filter: return new array, not touch original array
+    - reduce:
+
+    - Array with string: 
+        - split(saparator: string, limit?: number)
+        - join
+    - The Spread Operator with array object
+    - Array destructuring:
+        Ex: const [lastName, firstName] = ["Phat", "Nguyen];
+
+    - Maps and Sets
+        - Sets: are data structure help you manage unique values in somes case
+
+    Compare map and object
+        - Map: 
+            - Can use ANY values(any types) as key
+        - Object: 
+            - Only may use string, numbers or Symbol as keys
+Object:
+    - Spread operator, Object.assign({}, object)
+    - Object destructuring: const { lastName, firstName } = { lastName: "phat", firstName: "nguyen" }
+        + assign new name: const { title: movieTitle } = info;
+    - Check for properties existance: 
+        + if('info' in movie)
+    - This: is reponsiable for calling the function. It's always the thing in front of the function 
+        + Problem with this 
+        + This in arrow function: arrow function don't know this
+
+OOP: Working with entities in your code
+    - Class and object: 
+        - Class not replace object, it allow it define blueprints for object so that
+        we can easily recreate object based on these classes
+    - Class Fields(vs Properties)
