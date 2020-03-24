@@ -1,5 +1,6 @@
 Javascript is hosted language, that mean browsers provide the enviroment for Javascript to run,
 it provive Javascript engine parse and understand all Javascript code and executed 
+Javascript is prototype-based language. We use constructor to build object
 
 How code is parsed and complile
     - Javascript parseing and execution (Javascript engine)
@@ -86,6 +87,13 @@ Function: are object
     Function inside function: Funtion Inside is only available inside of the function
 
     - Bind: allow us to preconfigure functions but don't directly execute in function
+    - Pure function: 
+        + Same input produce same output
+        + Not change anything outside of the function
+    - Factory function: have a function that produces another function
+    - Every function in JS is closure
+        + every function close over surrounding enviroment and variables
+    
 
 DOM (Document object model) :
     * Is not stricly tied to browsers. There are other tools that can parse HTML
@@ -121,6 +129,7 @@ DOM (Document object model) :
             - cloneNode
             - remove (not support IE)
             - removeChild(all browser): list.parentElment.removeChild()
+            - importNode: clone node. ex: document.importNode(buttonEl, true)
 Array
     - Iterable: Not every iterable is Array. Other iterable are NodeList, string, Map, Set
     - Create Array
@@ -159,6 +168,9 @@ Array
         - Object: 
             - Only may use string, numbers or Symbol as keys
 Object:
+    - Object literal(object normal): const obj = {}
+        + Object.defineProperty
+    - new Object()
     - Spread operator, Object.assign({}, object)
     - Object destructuring: const { lastName, firstName } = { lastName: "phat", firstName: "nguyen" }
         + assign new name: const { title: movieTitle } = info;
@@ -167,9 +179,70 @@ Object:
     - This: is reponsiable for calling the function. It's always the thing in front of the function 
         + Problem with this 
         + This in arrow function: arrow function don't know this
-
+    - Object desciprtor: 
 OOP: Working with entities in your code
     - Class and object: 
         - Class not replace object, it allow it define blueprints for object so that
         we can easily recreate object based on these classes
     - Class Fields(vs Properties)
+    - instanceof: btn instanceof HTMLButtonElement
+
+Prototype: 
+    - Constructor function
+        + Blueprint for object
+        + Properties and method
+    - Classes
+        + Blueprint for object
+        + Properties and method
+
+    - __proto__: based object
+    - prototype: when create constructor function
+    - getPrototypeOf: 
+    - setPrototypeOf
+Event: 
+    - addEventListener, removeEventListener
+    - scroll
+    - preventDefault
+    - Capturing and budding:
+        + Capturing: from outside to inside
+        + Bubbling: from inside to outside
+        Note: All event registered in the budding phared
+        + stopPropagition
+        + deligate:
+            - currentTarget
+            - closest(): traverses up
+    - Trigger Dom: button.click()
+    - Drag, drop
+        S1: Configuring draggable element: draggable="true"
+        S2: Listen dragstart Event
+        S3: Accept drop via dragenter and dragover event => preventDefault()
+            + Optional: listen to dragleave
+        S4: Listen to drop event
+            + Optional: listen to dragend
+
+Promise & Callbacks
+    - Promise: wrapp everything inside one big promise
+        Promise all
+        Promise race
+        Promise allSettled
+    - Aync, await:
+        + Handle error: use try catch
+
+Http request
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'url');
+    xhr.responseType = 'json'; // auto parse data from json
+    xhr.onload = function () {
+
+        const listOfPost = JSON.parse(xhr.response);
+        console.log(listOfPost);
+    }
+    xhr.onerror = function () {
+        reject(new Error('Fail to send request'))
+    }
+    xhr.send();
+
+Javascript module
+
+Iterator and generator
+    - Iterator: là một object mà nó định nghĩa một trình tự và giá trị có thể trả về tiếp theo trước khi kết thúc
